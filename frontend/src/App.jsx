@@ -1,80 +1,31 @@
-import React, { useState } from "react";
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router";
+
+//Paginas
 import LoginPage from "./pages/LoginPage";
-
-// Pantallas vacías para cada rol (para pruebas)
-const GerenciaPage = () => <h2 className="p-8 text-xl">Bienvenido Gerencia</h2>;
-const RecepcionPage = () => <h2 className="p-8 text-xl">Bienvenido Recepción</h2>;
-const TecnicoPage = () => <h2 className="p-8 text-xl">Bienvenido Técnico</h2>;
-const VentasPage = () => <h2 className="p-8 text-xl">Bienvenido Área de Ventas</h2>;
-
-// Componente de ruta privada
-const PrivateRoute = ({ children, isLoggedIn }) => {
-  return isLoggedIn ? children : <Navigate to="/" replace />;
-};
-
-const App = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [userRole, setUserRole] = useState("");
-
-  const handleLogin = (role) => {
-    setIsLoggedIn(true);
-    setUserRole(role);
-  };
-
+import OtpPage from './pages/OtpPage';
+import ForgotPassw from './pages/ForgotPage'
+import ChangePassw from './pages/ChangePassword'
+import DashboardGerencia from './pages/DashboardGerencia'
+import DashboardRecepcion from './pages/DashboardRecepcion'
+import DashboardTecnico from './pages/DashboardTecnico'
+import DashboardVentas from './pages/DashboardVentas'
+function App() {
   return (
-    <Router>
-      <Routes>
-        {/* Ruta principal = Login */}
-        <Route
-          path="/"
-          element={
-            isLoggedIn ? (
-              <Navigate to={`/${userRole}`} replace />
-            ) : (
-              <LoginPage onLogin={handleLogin} />
-            )
-          }
-        />
+    <>
+      <BrowserRouter>
+        <Routes>
+        <Route index element={<LoginPage/>}/>
+        <Route path="otp" element={<OtpPage/>}/>
+        <Route path="forgot-password" element={<ForgotPassw/>}/>
+        <Route path="change-password" element={<ChangePassw/>}/>
 
-        {/* Rutas privadas para cada rol */}
-        <Route
-          path="/gerencia"
-          element={
-            <PrivateRoute isLoggedIn={isLoggedIn}>
-              <GerenciaPage />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/recepcion"
-          element={
-            <PrivateRoute isLoggedIn={isLoggedIn}>
-              <RecepcionPage />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/tecnico"
-          element={
-            <PrivateRoute isLoggedIn={isLoggedIn}>
-              <TecnicoPage />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/ventas"
-          element={
-            <PrivateRoute isLoggedIn={isLoggedIn}>
-              <VentasPage />
-            </PrivateRoute>
-          }
-        />
-
-        {/* Ruta catch-all */}
-        <Route path="*" element={<Navigate to="/" replace />} />
-      </Routes>
-    </Router>
+        <Route path="dashboard-gerencia" element={<DashboardGerencia/>}/>
+        <Route path="dashboard-recepcion" element={<DashboardRecepcion/>}/>
+        <Route path="dashboard-tecnico" element={<DashboardTecnico/>}/>
+        <Route path="dashboard-ventas" element={<DashboardVentas/>}/>
+        </Routes>
+      </BrowserRouter>
+    </>
   );
 };
 
