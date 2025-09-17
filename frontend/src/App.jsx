@@ -5,10 +5,7 @@ import LoginPage from "./pages/LoginPage";
 import OtpPage from './pages/OtpPage';
 import ForgotPassw from './pages/ForgotPage'
 import ChangePassw from './pages/ChangePassword'
-import DashboardGerencia from './pages/DashboardGerencia'
-import DashboardRecepcion from './pages/DashboardRecepcion'
-import DashboardTecnico from './pages/DashboardTecnico'
-import DashboardVentas from './pages/DashboardVentas'
+import Dashboard from './layouts/dashboard'
 function App() {
   return (
     <>
@@ -19,10 +16,9 @@ function App() {
         <Route path="forgot-password" element={<ForgotPassw/>}/>
         <Route path="change-password" element={<ChangePassw/>}/>
 
-        <Route path="dashboard-gerencia" element={<DashboardGerencia/>}/>
-        <Route path="dashboard-recepcion" element={<DashboardRecepcion/>}/>
-        <Route path="dashboard-tecnico" element={<DashboardTecnico/>}/>
-        <Route path="dashboard-ventas" element={<DashboardVentas/>}/>
+        <Route path='/dashboard' element={<Dashboard/>}>
+
+        </Route>
         </Routes>
       </BrowserRouter>
     </>

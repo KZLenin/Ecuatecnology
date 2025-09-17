@@ -1,5 +1,5 @@
 import { LogIn } from "lucide-react";
-import Logo from "../assets/logo.jpg"; // <-- coloca tu PNG aquí
+import Logo from "../assets/logo.png"; // <-- coloca tu PNG aquí
 
 import { useForm } from 'react-hook-form'
 import {useFetch} from '../hooks/useFetch'
